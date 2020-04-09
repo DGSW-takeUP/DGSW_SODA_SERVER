@@ -13,7 +13,7 @@ const authMiddleware = async (req, res, next) => {
     res.status(400).json(result);
 
     console.log('토큰 없음');
-    
+
     return;
   }
 

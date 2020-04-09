@@ -30,8 +30,6 @@
     "nodemailer": "^6.3.1",
     "nodemailer-juice": "^1.0.1",
     "nodemon": "^1.19.4",
-    "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "request-promise-native": "^1.0.8",

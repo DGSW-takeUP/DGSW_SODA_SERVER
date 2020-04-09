@@ -48,6 +48,14 @@ exports.writeAnswer = async (req, res) => {
       memberId,
     });
 
+    await models.Question.update({
+      isComplate: 1,
+    }, {
+      where: {
+        idx: body.questionIdx,
+      },
+    });
+
     const result = {
       status: 200,
       message: '답변 작성 성공!',

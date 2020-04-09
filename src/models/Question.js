@@ -135,6 +135,17 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Question.getByCategoryAllQuestionAdmin = (category) => Question.findAll({
+    where: {
+      category,
+      isComplate: 0,
+    },
+    order: [
+      ['joinDate', 'DESC'],
+    ],
+    raw: true,
+  });
+
   // eslint-disable-next-line consistent-return
   Question.getIsComplateQuestion = (requestPage, limit) => Question.findAll({
     offset: requestPage,
