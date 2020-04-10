@@ -182,7 +182,5 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
-
-
   return Question;
 };
