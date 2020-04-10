@@ -187,6 +187,14 @@ exports.deleteAnswer = async (req, res) => {
       return;
     }
 
+    await models.Question.update({
+      isComplate: 0,
+    }, {
+      where: {
+        idx: answer.questionIdx,
+      },
+    });
+
     await models.Answer.destroy({
       where: {
         idx,
@@ -200,6 +208,8 @@ exports.deleteAnswer = async (req, res) => {
 
     res.status(200).json(result);
   } catch (error) {
+    console.log(error);
+
     const result = {
       status: 500,
       message: '서버 에러!',
