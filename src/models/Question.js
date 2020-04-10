@@ -98,6 +98,17 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Question.getAllQuestionAdmin = () => Question.findAll({
+    where: {
+      isComplate: 0,
+    },
+    order: [
+      ['joinDate', 'DESC'],
+    ],
+
+    raw: true,
+  });
+
   Question.getMyQuestion = (memberId, requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
@@ -147,9 +158,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // eslint-disable-next-line consistent-return
-  Question.getIsComplateQuestion = (requestPage, limit) => Question.findAll({
+  Question.getNotComplateQuestion = (requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
+    where: {
+      isComplate: 0,
+    },
     order: [
       ['joinDate', 'DESC'],
     ],

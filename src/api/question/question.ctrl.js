@@ -164,44 +164,45 @@ exports.getAdminQuestion = async (req, res) => {
     const requestPage = (page - 1) * limit;
     limit = Number(limit);
 
-    const question = await models.Question.getIsComplateQuestion(0, requestPage, limit);
-    const allQuestion = await models.Question.getAllQuestion(requestPage, limit);
+    const question = await models.Question.getNotComplateQuestion(requestPage, limit);
+    const allQuestion = await models.Question.getAllQuestionAdmin();
+    // const allQuestion = await models.Question.getAllQuestion(requestPage, limit);
 
-    const totalPage = Math.ceil(question.length / limit);
-    await asyncForeach(question, async (value) => {
-      const { idx } = value;
+    const totalPage = Math.ceil(allQuestion.length / limit);
+    // await asyncForeach(question, async (value) => {
+    //   const { idx } = value;
 
-      const fileData = await models.QuestionFile.getByQuestionIdx(idx);
+    //   const fileData = await models.QuestionFile.getByQuestionIdx(idx);
 
-      await file.creatImageUrl(fileData);
+    //   await file.creatImageUrl(fileData);
 
-      if (fileData.length > 0) {
-        value.picture = fileData;
-      } else {
-        value.picture = null;
-      }
-    });
+    //   if (fileData.length > 0) {
+    //     value.picture = fileData;
+    //   } else {
+    //     value.picture = null;
+    //   }
+    // });
 
-    await asyncForeach(allQuestion, async (value) => {
-      const { idx } = value;
+    // await asyncForeach(allQuestion, async (value) => {
+    //   const { idx } = value;
 
-      const fileData = await models.QuestionFile.getByQuestionIdx(idx);
+    //   const fileData = await models.QuestionFile.getByQuestionIdx(idx);
 
-      await file.creatImageUrl(fileData);
+    //   await file.creatImageUrl(fileData);
 
-      if (fileData.length > 0) {
-        value.picture = fileData;
-      } else {
-        value.picture = null;
-      }
-    });
+    //   if (fileData.length > 0) {
+    //     value.picture = fileData;
+    //   } else {
+    //     value.picture = null;
+    //   }
+    // });
 
     const result = {
       status: 200,
       message: '조회 성공!',
       data: {
         question,
-        allQuestion,
+        // allQuestion,
         totalPage,
       },
     };
