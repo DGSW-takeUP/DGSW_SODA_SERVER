@@ -3,7 +3,7 @@ const log = require('../lib/log');
 
 const authMiddleware = async (req, res, next) => {
   const token = req.headers['x-access-token'];
-
+  console.log(token);
   if (!token) {
     const result = {
       status: 400,
