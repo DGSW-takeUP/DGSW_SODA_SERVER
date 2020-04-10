@@ -107,7 +107,7 @@ exports.getQuestions = async (req, res) => {
     const requestPage = (page - 1) * limit;
     limit = Number(limit);
 
-    // const question = await models.Question.getComplateQuestion(requestPage, limit);
+    const question = await models.Question.getIsComplateQuestion(requestPage, limit);
     const questionAll = await models.Question.getAllQuestionForData();
     const totalPage = Math.ceil(questionAll.length / limit);
 
@@ -115,7 +115,7 @@ exports.getQuestions = async (req, res) => {
       status: 200,
       message: '문의 리스트 조회 성공!',
       data: {
-        questionAll,
+        question,
         totalPage,
       },
     };

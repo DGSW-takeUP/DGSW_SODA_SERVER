@@ -182,5 +182,14 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Question.getIsComplateQuestion = (requestPage, limit) => Question.findAll({
+    offset: requestPage,
+    limit,
+    order: [
+      ['joinDate', 'DESC'],
+    ],
+    raw: true,
+  });
+
   return Question;
 };
