@@ -359,22 +359,22 @@ exports.getByAdminCategory = async (req, res) => {
     const requestPage = (page - 1) * limit;
     limit = Number(limit);
 
-    const question = await models.Question.getByCategory(category, requestPage, limit);
+    const question = await models.Question.getByCategoryAllQuestionAdmin(category, requestPage, limit);
     const questionAll = await models.Question.getByCategoryAllQuestionAdmin(category);
 
-    await asyncForeach(question, async (value) => {
-      const { idx } = value;
+    // await asyncForeach(question, async (value) => {
+    //   const { idx } = value;
 
-      const fileData = await models.QuestionFile.getByQuestionIdx(idx);
+    //   const fileData = await models.QuestionFile.getByQuestionIdx(idx);
 
-      await file.creatImageUrl(fileData);
+    //   await file.creatImageUrl(fileData);
 
-      if (fileData.length > 0) {
-        value.picture = fileData;
-      } else {
-        value.picture = null;
-      }
-    });
+    //   if (fileData.length > 0) {
+    //     value.picture = fileData;
+    //   } else {
+    //     value.picture = null;
+    //   }
+    // });
 
     const totalPage = Math.ceil(questionAll.length / limit);
 
