@@ -107,7 +107,7 @@ exports.getQuestions = async (req, res) => {
     const requestPage = (page - 1) * limit;
     limit = Number(limit);
 
-    const question = await models.Question.getIsComplateQuestion(requestPage, limit);
+    const question = await models.Question.getComplateQuestion(requestPage, limit);
     const questionAll = await models.Question.getAllQuestionForData();
     const totalPage = Math.ceil(questionAll.length / limit);
 
@@ -287,21 +287,21 @@ exports.getMyQuestion = async (req, res) => {
 
     const question = await models.Question.getMyQuestion(memberId, requestPage, limit);
 
-    await asyncForeach(question, async (value) => {
-      const { idx } = value;
+    // await asyncForeach(question, async (value) => {
+    //   const { idx } = value;
 
-      const fileData = await models.QuestionFile.getByQuestionIdx(idx);
+    //   const fileData = await models.QuestionFile.getByQuestionIdx(idx);
 
-      await file.creatImageUrl(fileData);
+    //   await file.creatImageUrl(fileData);
 
-      if (fileData.length > 0) {
-        value.picture = fileData;
-      } else {
-        value.picture = null;
-      }
-    });
+    //   if (fileData.length > 0) {
+    //     value.picture = fileData;
+    //   } else {
+    //     value.picture = null;
+    //   }
+    // });
 
-    const questionAll = await models.Question.getAllQuestionForData();
+    const questionAll = await models.Question.getAllMyQuestion(memberId);
 
     const totalPage = Math.ceil(questionAll.length / limit);
 

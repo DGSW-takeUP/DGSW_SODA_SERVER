@@ -74,22 +74,25 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  // 질문 삭제
   Question.deleteQuestion = (idx) => Question.destroy({
     where: {
       idx,
     },
   });
 
-  Question.getAllQuestion = (requestPage, limit) => Question.findAll({
-    offset: requestPage,
-    limit,
-    order: [
-      ['joinDate', 'DESC'],
-    ],
+  // 전체 질문 조회
+  // Question.getAllQuestion = (requestPage, limit) => Question.findAll({
+  //   offset: requestPage,
+  //   limit,
+  //   order: [
+  //     ['joinDate', 'DESC'],
+  //   ],
 
-    raw: true,
-  });
+  //   raw: true,
+  // });
 
+  // 페이지 계산용 전체 질문조회
   Question.getAllQuestionForData = () => Question.findAll({
     order: [
       ['joinDate', 'DESC'],
@@ -109,6 +112,7 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  // 내가 작성한 질문 조회
   Question.getMyQuestion = (memberId, requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
@@ -123,12 +127,26 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
-  // eslint-disable-next-line consistent-return
+  // 페이지 계산용 내가 작성한 질문 전체 조회
+  Question.getAllMyQuestion = (memberId) => Question.findAll({
+    where: {
+      memberId,
+    },
+
+    order: [
+      ['joinDate', 'DESC'],
+    ],
+
+    raw: true,
+  });
+
+  // 답변 달린 카테고리별 질문 조회
   Question.getByCategory = (category, requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
     where: {
       category,
+      isComplate: 1,
     },
     order: [
       ['joinDate', 'DESC'],
@@ -136,6 +154,7 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  // 페이지 계산을 위한 카테고리 전체 질문 조회
   Question.getByCategoryAllQuestion = (category) => Question.findAll({
     where: {
       category,
@@ -146,6 +165,7 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  // 어드민 페이지 계산을 위한 카테고리 전체 질문 조회
   Question.getByCategoryAllQuestionAdmin = (category) => Question.findAll({
     where: {
       category,
@@ -157,7 +177,7 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
-  // eslint-disable-next-line consistent-return
+  // 어드민용 답변 안달린 질문 조회
   Question.getNotComplateQuestion = (requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
@@ -170,6 +190,7 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  // 답변 달린 질문 조회
   Question.getComplateQuestion = (requestPage, limit) => Question.findAll({
     offset: requestPage,
     limit,
@@ -182,14 +203,14 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
-  Question.getIsComplateQuestion = (requestPage, limit) => Question.findAll({
-    offset: requestPage,
-    limit,
-    order: [
-      ['joinDate', 'DESC'],
-    ],
-    raw: true,
-  });
+  // Question.getIsComplateQuestion = (requestPage, limit) => Question.findAll({
+  //   offset: requestPage,
+  //   limit,
+  //   order: [
+  //     ['joinDate', 'DESC'],
+  //   ],
+  //   raw: true,
+  // });
 
   return Question;
 };
