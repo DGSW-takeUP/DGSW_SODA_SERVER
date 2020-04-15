@@ -101,6 +101,17 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Question.getAllComplateQuestionForData = () => Question.findAll({
+    where: {
+      isComplate: 1,
+    },
+    order: [
+      ['joinDate', 'DESC'],
+    ],
+
+    raw: true,
+  });
+
   Question.getAllQuestionAdmin = () => Question.findAll({
     where: {
       isComplate: 0,
@@ -158,6 +169,7 @@ module.exports = (sequelize, DataTypes) => {
   Question.getByCategoryAllQuestion = (category) => Question.findAll({
     where: {
       category,
+      isComplate: 1,
     },
     order: [
       ['joinDate', 'DESC'],

@@ -108,7 +108,7 @@ exports.getQuestions = async (req, res) => {
     limit = Number(limit);
 
     const question = await models.Question.getComplateQuestion(requestPage, limit);
-    const questionAll = await models.Question.getAllQuestionForData();
+    const questionAll = await models.Question.getAllComplateQuestionForData();
     const totalPage = Math.ceil(questionAll.length / limit);
 
     const result = {
