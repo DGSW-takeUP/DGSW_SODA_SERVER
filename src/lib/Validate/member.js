@@ -31,3 +31,17 @@ exports.validateUserEmail = async (body) => {
     throw error;
   }
 };
+
+exports.validateModifyUser = async (body) => {
+  const schema = Joi.object().keys({
+    profileImage: Joi.any(),
+    nickName: Joi.string(),
+    pw: Joi.string(),
+  });
+  // eslint-disable-next-line no-useless-catch
+  try {
+    return await Joi.validate(body, schema);
+  } catch (error) {
+    throw error;
+  }
+};
