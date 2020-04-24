@@ -65,7 +65,7 @@ exports.modifyInfo = async (req, res) => {
     }
 
     if (body.profileImage !== null) {
-      body.profileImage = `https://${requestAddress}/image/${body.profileImage.type}/${body.profileImage.uploadName}`;
+      body.profileImage = `https://${requestAddress}/image/${body.profileImage.type}/${body.profileImage.uploadName}.${body.profileImage.type}`;
     }
 
     await models.Member.update({
