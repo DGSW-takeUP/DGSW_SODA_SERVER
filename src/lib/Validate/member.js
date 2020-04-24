@@ -36,6 +36,7 @@ exports.validateModifyUser = async (body) => {
   const schema = Joi.object().keys({
     profileImage: Joi.any(),
     nickName: Joi.string(),
+    email: Joi.string(),
     pw: Joi.string(),
   });
   // eslint-disable-next-line no-useless-catch
