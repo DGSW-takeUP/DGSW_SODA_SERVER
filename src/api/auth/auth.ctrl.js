@@ -135,7 +135,7 @@ exports.registerAccount = async (req, res) => {
       body.profileImage = `https://${requestAddress}/image/${body.profileImage.type}/${body.profileImage.uploadName}`;
     }
 
-    await models.Member.registerMember(body.memberId, body.pw, 1, body.name, body.certification, body.profileImage, body.email, body.nickName, body.consent);
+    await models.Member.registerMember(body.memberId, body.pw, 1, body.name, body.certification, body.profileImage, body.email, body.consent);
 
     const result = {
       status: 200,
