@@ -96,5 +96,14 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Member.findMemberByPw = (memberId, pw) => Member.findOne({
+    where: {
+      memberId,
+      pw,
+    },
+
+    raw: true,
+  });
+
   return Member;
 };

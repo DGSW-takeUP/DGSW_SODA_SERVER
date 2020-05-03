@@ -93,20 +93,48 @@ exports.modifyInfo = async (req, res) => {
   }
 };
 
-// exports.getMyInfo = async (req, res) => {
-//   try {
-//     const result = {
-//       status: 200,
-//       message: '!',
-//     };
+exports.pwCheck = async (req, res) => {
+  const { memberId } = req.decoded;
+  const { pw } = req.body;
 
-//     res.status(200).json(result);
-//   } catch (error) {
-//     const result = {
-//       status: 500,
-//       message: '서버 에러!',
-//     };
+  if (!pw) {
+    const result = {
+      status: 400,
+      message: '비밀번호를 입력 하세요!',
+    };
 
-//     res.status(500).json(result);
-//   }
-// };
+    res.status(400).json(result);
+
+    return;
+  }
+
+
+  try {
+    const member = await models.Member.findMemberByPw(memberId, pw);
+
+    if (!member) {
+      const result = {
+        status: 403,
+        message: '검증 실패!',
+      };
+
+      res.status(403).json(result);
+
+      return;
+    }
+
+    const result = {
+      status: 200,
+      message: '비밀번호 검증 성공!',
+    };
+
+    res.status(200).json(result);
+  } catch (error) {
+    const result = {
+      status: 500,
+      message: '서버 에러!',
+    };
+
+    res.status(500).json(result);
+  }
+};
