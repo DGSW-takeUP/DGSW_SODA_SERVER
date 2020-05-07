@@ -64,7 +64,7 @@ exports.modifyInfo = async (req, res) => {
       return;
     }
 
-    if (body.profileImage !== null) {
+    if (body.profileImage) {
       body.profileImage = `https://${requestAddress}/image/${body.profileImage.type}/${body.profileImage.uploadName}.${body.profileImage.type}`;
     }
 
