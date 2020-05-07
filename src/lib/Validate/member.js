@@ -10,7 +10,6 @@ exports.validateRegisterUser = async (body) => {
     certification: Joi.boolean().required(),
     consent: Joi.boolean().required(),
     email: Joi.string().email().required(),
-    nickName: Joi.string().required(),
   });
   // eslint-disable-next-line no-useless-catch
   try {
