@@ -9,7 +9,7 @@ exports.getMyInfo = async (req, res) => {
     const member = await models.Member.findRegisterMemberId(memberId);
 
     delete member.pw;
-    delete member.auth;
+    // delete member.auth;
     delete member.consent;
     delete member.certification;
 
