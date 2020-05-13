@@ -21,6 +21,7 @@
     "crypto": "^1.0.1",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
+    "express-cache-controller": "^1.1.0",
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",

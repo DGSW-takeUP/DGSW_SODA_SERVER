@@ -9,6 +9,7 @@ const cors = require('cors');
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const colors = require('colors');
+const cacheControl = require('express-cache-controller');
 const override = require('method-override');
 const compression = require('compression');
 const colorConsole = require('./lib/log');
@@ -27,6 +28,9 @@ app.use(cors());
 app.use(express.json());
 app.use(override());
 app.use(compression());
+app.use(cacheControl({
+  maxAge: 0,
+}));
 
 // api router
 app.use('/', api);
