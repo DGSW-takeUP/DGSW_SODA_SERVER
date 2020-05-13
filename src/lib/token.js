@@ -12,7 +12,7 @@ exports.createToken = async (memberId, auth) => {
     memberId, auth,
   };
 
-  const option = { expiresIn: 5, issuer: 'dgswbamboo.com', subject: 'token' };
+  const option = { expiresIn: 15, issuer: 'dgswbamboo.com', subject: 'token' };
 
   // eslint-disable-next-line no-useless-catch
   try {
