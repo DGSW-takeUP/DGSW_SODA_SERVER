@@ -2,6 +2,7 @@ const models = require('../../models');
 const FB = require('../../repo/facebook');
 const colorConsole = require('../../lib/log');
 const file = require('../../lib/file');
+const moment  = require('moment');
 const { asyncForeach } = require('../../lib/method');
 
 exports.isAllowBamboo = async (req, res) => {
@@ -24,6 +25,9 @@ exports.isAllowBamboo = async (req, res) => {
     // 게시물 수락 및 페이스북 페이지 업로드
     const bamboo = await models.Bamboo.getByIdx(idx);
     const bambooFile = await models.BambooFile.getFiles(bamboo.idx);
+    const bambooCount = await models.Bamboo.getAllowedBamboo();
+    let allowDate = Date.now();
+    allowDate = moment(allowDate).format('YYYY-MM-DD hh:mm');
 
     // 게시물 거절
     if (isAllow === 0) {
@@ -56,7 +60,7 @@ exports.isAllowBamboo = async (req, res) => {
       });
 
       // 게시물 페이스북 업로드
-      const errorCode = await FB.uploadPostWithPhoto(imageFile, bamboo.contents, bamboo.name, bamboo.allowDate);
+      const errorCode = await FB.uploadPostWithPhoto(imageFile, bamboo.contents, bamboo.name, allowDate, bambooCount.length);
 
       if (errorCode === 'error') {
         const result = {
@@ -88,6 +92,8 @@ exports.isAllowBamboo = async (req, res) => {
       return;
     }
 
+    await FB.uploadPostWithOutPhoto(bamboo.contents, bamboo.name, allowDate, bambooCount.length);
+
     await models.Bamboo.update({
       isAllow: 1,
       allowDate: Date.now(),
@@ -96,8 +102,6 @@ exports.isAllowBamboo = async (req, res) => {
         idx: bamboo.idx,
       },
     });
-
-    await FB.uploadPostWithOutPhoto(bamboo.contents, bamboo.name, bamboo.allowDate);
 
     const result = {
       status: 200,

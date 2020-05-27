@@ -107,6 +107,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
+  Bamboo.getAllowedBamboo = () => Bamboo.findAll({
+    where: {
+      isAllow: 1,
+    },
+    raw: true,
+  });
+
 
   return Bamboo;
 };
