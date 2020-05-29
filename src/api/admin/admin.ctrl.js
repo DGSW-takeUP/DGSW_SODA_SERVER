@@ -1,8 +1,8 @@
+const moment = require('moment-timezone');
 const models = require('../../models');
 const FB = require('../../repo/facebook');
 const colorConsole = require('../../lib/log');
 const file = require('../../lib/file');
-const moment  = require('moment');
 const { asyncForeach } = require('../../lib/method');
 
 exports.isAllowBamboo = async (req, res) => {
@@ -27,7 +27,7 @@ exports.isAllowBamboo = async (req, res) => {
     const bambooFile = await models.BambooFile.getFiles(bamboo.idx);
     const bambooCount = await models.Bamboo.getAllowedBamboo();
     let allowDate = Date.now();
-    allowDate = moment(allowDate).format('YYYY-MM-DD HH:mm');
+    allowDate = moment(allowDate).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm');
 
     // 게시물 거절
     if (isAllow === 0) {
