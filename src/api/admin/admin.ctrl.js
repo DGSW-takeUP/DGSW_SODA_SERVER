@@ -27,7 +27,7 @@ exports.isAllowBamboo = async (req, res) => {
     const bambooFile = await models.BambooFile.getFiles(bamboo.idx);
     const bambooCount = await models.Bamboo.getAllowedBamboo();
     let allowDate = Date.now();
-    allowDate = moment(allowDate).format('YYYY-MM-DD hh:mm');
+    allowDate = moment(allowDate).format('YYYY-MM-DD HH:mm');
 
     // 게시물 거절
     if (isAllow === 0) {
