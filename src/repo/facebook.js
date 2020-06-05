@@ -33,9 +33,8 @@ exports.uploadPostWithOutPhoto = (contentsData, name, date, bambooCount) => {
   }
 
   contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${date} 게시`;
-
   contents += `\n\n\n\n ${contentsData}`;
+  contents += `\n\n\n\n ${date} 게시`;
 
   const option = {
     uri: `https://graph.facebook.com/${facebook.pageId}/feed/`,
@@ -65,9 +64,8 @@ exports.uploadPostWithPhoto = async (url, contentsData, name, date, bambooCount)
   }
 
   contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${date} 게시`;
-
   contents += `\n\n\n\n ${contentsData}`;
+  contents += `\n\n\n\n ${date} 게시`;
 
   const fbid = [];
   try {
