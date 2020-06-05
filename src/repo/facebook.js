@@ -27,9 +27,8 @@ exports.uploadPostWithOutPhoto = (contentsData, name, date, bambooCount) => {
   let contents = '';
 
   contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${contentsData}`;
   contents += `\n\n\n\n ${date} 게시`;
-
+  contents += `\n\n\n\n ${contentsData}`;
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
   } else {
@@ -59,8 +58,8 @@ exports.uploadPostWithPhoto = async (url, contentsData, name, date, bambooCount)
 
 
   contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${contentsData}`;
   contents += `\n\n\n\n ${date} 게시`;
+  contents += `\n\n\n\n ${contentsData}`;
 
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
