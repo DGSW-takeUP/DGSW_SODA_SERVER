@@ -26,15 +26,15 @@ const uploadImage = (url) => new Promise((resolve, reject) => {
 exports.uploadPostWithOutPhoto = (contentsData, name, date, bambooCount) => {
   let contents = '';
 
+  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
+  contents += `\n\n\n\n ${contentsData}`;
+  contents += `\n\n\n\n ${date} 게시`;
+
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
   } else {
     contents += `\n\n\n\n ${name}님 제보`;
   }
-
-  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${contentsData}`;
-  contents += `\n\n\n\n ${date} 게시`;
 
   const option = {
     uri: `https://graph.facebook.com/${facebook.pageId}/feed/`,
@@ -57,15 +57,16 @@ exports.uploadPostWithOutPhoto = (contentsData, name, date, bambooCount) => {
 exports.uploadPostWithPhoto = async (url, contentsData, name, date, bambooCount) => {
   let contents = '';
 
+
+  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
+  contents += `\n\n\n\n ${contentsData}`;
+  contents += `\n\n\n\n ${date} 게시`;
+
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
   } else {
     contents += `\n\n\n\n ${name}님 제보`;
   }
-
-  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
-  contents += `\n\n\n\n ${contentsData}`;
-  contents += `\n\n\n\n ${date} 게시`;
 
   const fbid = [];
   try {
