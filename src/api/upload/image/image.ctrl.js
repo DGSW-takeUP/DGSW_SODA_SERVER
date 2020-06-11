@@ -4,6 +4,16 @@ exports.uploadImgs = (req, res) => {
   const imgs = [];
   const { files } = req;
 
+  if (files.length === 0) {
+    const result = {
+      status: 400,
+      message: '이미지를 첨부 하세요',
+    };
+    res.status(400).json(result);
+
+    return;
+  }
+
   req.files.forEach((file) => {
     const uploadName = file.filename;
     const fileData = uploadName.split('.');

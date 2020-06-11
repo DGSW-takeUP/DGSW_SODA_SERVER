@@ -68,13 +68,6 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  // Post.associate = (models) => {
-  //   Post.belongsTo(models.Member, {
-  //     foreignKey: 'memberId',
-  //     onDelete: 'CASCADE',
-  //   });
-  // };
-
   Bamboo.getByIdx = (idx) => Bamboo.findOne({
     where: {
       idx,
@@ -113,6 +106,13 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
+
+  Bamboo.getAllowedBamboo = () => Bamboo.findAll({
+    where: {
+      isAllow: 1,
+    },
+    raw: true,
+  });
 
 
   return Bamboo;

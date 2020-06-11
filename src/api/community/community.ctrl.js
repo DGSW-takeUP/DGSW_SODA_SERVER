@@ -7,7 +7,6 @@ const { asyncForeach } = require('../../lib/method');
 exports.writePost = async (req, res) => {
   const { body } = req;
   const { memberId } = req.decoded;
-  const requestAddress = req.get('host');
 
   try {
     await validate.validateWriteSodaPost(body);
@@ -51,7 +50,7 @@ exports.writePost = async (req, res) => {
       });
 
       // IMAGE URL 발급
-      await file.sodaPostCreatImageUrlDB(picture, requestAddress, sodaPostData.idx);
+      await file.sodaPostCreatImageUrlDB(picture, sodaPostData.idx);
 
       const result = {
         status: 200,
@@ -62,7 +61,7 @@ exports.writePost = async (req, res) => {
       res.status(200).json(result);
     } else {
       // 이미지 없이 게시물 저장
-      const postData = await models.SodaPost.create({
+      await models.SodaPost.create({
         ...addData,
         memberId,
 
@@ -93,7 +92,6 @@ exports.getPostCategory = async (req, res) => {
   const { query } = req;
   const { category, page } = query;
   let { limit } = query;
-  const requestAddress = req.get('host');
 
   try {
     if (!limit || !page) {
@@ -133,7 +131,7 @@ exports.getPostCategory = async (req, res) => {
 
       const comment = await models.PostComment.getCommentsByPostIdx(idx);
 
-      await file.creatImageUrl(fileData, requestAddress);
+      await file.creatImageUrl(fileData);
 
       if (fileData.length > 0) {
         post.picture = fileData;
@@ -146,10 +144,6 @@ exports.getPostCategory = async (req, res) => {
       for (let i = 0; i < comment.length; i++) {
         if (comment[i].sodaIdx === idx) {
           post.comment.push(comment[i]);
-
-          // if (post.comment.length > 2) {
-          // return;
-          // }
         }
       }
 
@@ -304,7 +298,6 @@ exports.deletePost = async (req, res) => {
 };
 
 exports.getPosts = async (req, res) => {
-  const requestAddress = req.get('host');
   const { query } = req;
   let { limit } = query;
   const { page } = query;
@@ -336,7 +329,7 @@ exports.getPosts = async (req, res) => {
       const postLike = await models.SodaPostLike.getPostLikes(idx);
       const comment = await models.PostComment.getCommentsByPostIdx(idx);
 
-      await file.creatImageUrl(fileData, requestAddress);
+      await file.creatImageUrl(fileData);
 
       if (fileData.length > 0) {
         post.picture = fileData;
@@ -349,10 +342,6 @@ exports.getPosts = async (req, res) => {
       for (let i = 0; i < comment.length; i++) {
         if (comment[i].sodaIdx === idx) {
           post.comment.push(comment[i]);
-
-          // if (post.comment.length > 2) {
-          // return;
-          // }
         }
       }
 

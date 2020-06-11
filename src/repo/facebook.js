@@ -23,7 +23,12 @@ const uploadImage = (url) => new Promise((resolve, reject) => {
 });
 
 // 사진 없이 게시물 등록
-exports.uploadPostWithOutPhoto = (contents, name) => {
+exports.uploadPostWithOutPhoto = (contentsData, name, date, bambooCount) => {
+  let contents = '';
+
+  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
+  contents += `\n\n\n\n ${date} 게시`;
+  contents += `\n\n\n\n ${contentsData}`;
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
   } else {
@@ -48,7 +53,14 @@ exports.uploadPostWithOutPhoto = (contents, name) => {
 
 // 사진과 함께 게시물 등록
 // eslint-disable-next-line consistent-return
-exports.uploadPostWithPhoto = async (url, contents, name) => {
+exports.uploadPostWithPhoto = async (url, contentsData, name, date, bambooCount) => {
+  let contents = '';
+
+
+  contents += `\n\n\n\n #대소고_${bambooCount + 1}번째_게시글`;
+  contents += `\n\n\n\n ${date} 게시`;
+  contents += `\n\n\n\n ${contentsData}`;
+
   if (name === null) {
     contents += '\n\n\n\n 익명 제보';
   } else {

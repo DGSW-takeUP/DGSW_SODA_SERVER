@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
       primaryKey: true,
+      unique: true,
     },
     certification: {
       field: 'certification_check',
@@ -28,11 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       field: 'email',
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    nickName: {
-      field: 'nick_name',
       type: DataTypes.STRING(100),
       allowNull: false,
     },
@@ -64,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Member.findMemberForLogin = (id, pw) => Member.findOne({
-    attributes: ['memberId', 'certification', 'auth', 'displayName', 'joinDate', 'updateDate', 'profileImage', 'email', 'nickName'],
+    attributes: ['memberId', 'certification', 'auth', 'displayName', 'joinDate', 'updateDate', 'profileImage', 'email'],
     where: {
       memberId: id,
       pw,
@@ -73,11 +69,10 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
-  Member.registerMember = (memberId, pw, auth, name, certification, profileImage, email, nickName, consent) => Member.create({
+  Member.registerMember = (memberId, pw, auth, name, certification, profileImage, email, consent) => Member.create({
     memberId,
     pw,
     displayName: name,
-    nickName,
     auth,
     email,
     profileImage,
@@ -96,6 +91,15 @@ module.exports = (sequelize, DataTypes) => {
   Member.findMemberByEmail = (email) => Member.findOne({
     where: {
       email,
+    },
+
+    raw: true,
+  });
+
+  Member.findMemberByPw = (memberId, pw) => Member.findOne({
+    where: {
+      memberId,
+      pw,
     },
 
     raw: true,

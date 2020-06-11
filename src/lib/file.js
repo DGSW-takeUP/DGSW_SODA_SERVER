@@ -1,8 +1,25 @@
 const { asyncForeach } = require('../lib/method');
 const models = require('../models');
+const baseConfig = require('../../config/base.json');
 
-// url 작성 및 DB저장
-exports.bambooCreatImageUrlDB = async (picture, requestAddress, idx) => {
+// url 설정 함수
+const urlData = (fileData) => {
+  const requestAddress = baseConfig.base.replace;
+
+  const fileType = fileData.type;
+
+  const { uploadName } = fileData;
+
+  const url = `${requestAddress}/image/${fileType}/${uploadName}.${fileType}`;
+
+  return {
+    fileType,
+    url,
+  };
+};
+
+// url 작성 및 DB저장 대숲
+exports.bambooCreatImageUrlDB = async (picture, idx) => {
   await asyncForeach(picture, (value) => {
     const fileData = {
       bambooIdx: idx,
@@ -12,26 +29,15 @@ exports.bambooCreatImageUrlDB = async (picture, requestAddress, idx) => {
     // 파일 DB 저장
     models.BambooFile.create(fileData);
 
-    const fileType = fileData.type;
-
-    const { uploadName } = fileData;
-
-    // url 만들기
-    // if (fileType.startsWith('.')) {
-    //   fileType = fileType.substring('1', fileType.length);
-    // }
-    // if (fileType === 'jpg') {
-    //   fileType = 'jpeg';
-    // }
-
-    const url = `https://${requestAddress}/image/${fileType}/${uploadName}`;
+    const { url, fileType } = urlData(fileData);
 
     value.url = url;
     value.type = fileType;
   });
 };
 
-exports.sodaPostCreatImageUrlDB = async (picture, requestAddress, idx) => {
+// 소다 게시물 이미지 파일 저장
+exports.sodaPostCreatImageUrlDB = async (picture, idx) => {
   await asyncForeach(picture, (value) => {
     const fileData = {
       sodaIdx: idx,
@@ -41,36 +47,38 @@ exports.sodaPostCreatImageUrlDB = async (picture, requestAddress, idx) => {
     // 파일 DB 저장
     models.SodaFile.create(fileData);
 
-    const fileType = fileData.type;
-
-    const { uploadName } = fileData;
-
-    const url = `https://${requestAddress}/image/${fileType}/${uploadName}.${fileType}`;
+    const { url, fileType } = urlData(fileData);
 
     value.url = url;
     value.type = fileType;
   });
 };
 
-exports.creatImageUrl = async (picture, requestAddress) => {
+exports.questionPostCreatImageUrlDB = async (picture, idx) => {
+  await asyncForeach(picture, (value) => {
+    const fileData = {
+      questionIdx: idx,
+      ...value,
+    };
+
+    // 파일 DB 저장
+    models.QuestionFile.create(fileData);
+
+    const { url, fileType } = urlData(fileData);
+
+    value.url = url;
+    value.type = fileType;
+  });
+};
+
+// 조회시 url 설정
+exports.creatImageUrl = async (picture) => {
   await asyncForeach(picture, (value) => {
     const fileData = {
       ...value,
     };
 
-    const fileType = fileData.type;
-
-    const { uploadName } = fileData;
-
-    // url 만들기
-    // if (fileType.startsWith('.')) {
-    //   fileType = fileType.substring('1', fileType.length);
-    // }
-    // if (fileType === 'jpg') {
-    //   fileType = 'jpeg';
-    // }
-
-    const url = `https://${requestAddress}/image/${fileType}/${uploadName}.${fileType}`;
+    const { url, fileType } = urlData(fileData);
 
     value.url = url;
     value.type = fileType;

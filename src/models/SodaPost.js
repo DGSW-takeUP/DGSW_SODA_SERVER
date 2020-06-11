@@ -75,6 +75,9 @@ module.exports = (sequelize, DataTypes) => {
   SodaPost.getPosts = (requestPage, limit) => SodaPost.findAll({
     offset: requestPage,
     limit,
+    order: [
+      ['joinDate', 'DESC'],
+    ],
 
     raw: true,
   });

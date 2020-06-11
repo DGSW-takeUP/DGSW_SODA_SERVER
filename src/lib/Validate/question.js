@@ -1,15 +1,12 @@
 const BaseJoi = require('@hapi/joi');
 const Joi = BaseJoi.extend(require('@hapi/joi-date'));
 
-exports.validateRegisterUser = async (body) => {
+exports.validateWriteQuestion = async (body) => {
   const schema = Joi.object().keys({
-    memberId: Joi.string().required(),
-    pw: Joi.string().required(),
-    name: Joi.string().required(),
-    profileImage: Joi.any().allow(null),
-    certification: Joi.boolean().required(),
-    consent: Joi.boolean().required(),
-    email: Joi.string().email().required(),
+    title: Joi.string().required(),
+    contents: Joi.string().required(),
+    category: Joi.string().required(),
+    picture: Joi.any().allow(null),
   });
   // eslint-disable-next-line no-useless-catch
   try {
@@ -19,9 +16,10 @@ exports.validateRegisterUser = async (body) => {
   }
 };
 
-exports.validateUserEmail = async (body) => {
+exports.validateQuestionFile = async (body) => {
   const schema = Joi.object().keys({
-    email: Joi.string().email().required(),
+    uploadName: Joi.string().required(),
+    type: Joi.string().required(),
   });
   // eslint-disable-next-line no-useless-catch
   try {
@@ -31,11 +29,12 @@ exports.validateUserEmail = async (body) => {
   }
 };
 
-exports.validateModifyUser = async (body) => {
+exports.validateQuestionUpdate = async (body) => {
   const schema = Joi.object().keys({
-    profileImage: Joi.any(),
-    email: Joi.string().email(),
-    pw: Joi.string(),
+    title: Joi.string().required(),
+    contents: Joi.string().required(),
+    picture: Joi.any().allow(null),
+    idx: Joi.number().required(),
   });
   // eslint-disable-next-line no-useless-catch
   try {

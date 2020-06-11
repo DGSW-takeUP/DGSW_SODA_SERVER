@@ -6,8 +6,6 @@ const { asyncForeach } = require('../../lib/method');
 
 exports.writeBamboo = async (req, res) => {
   const { body } = req;
-  const requestAddress = req.get('host');
-  console.log(body);
 
   try {
     await validate.validateWriteBamboo(body);
@@ -52,8 +50,8 @@ exports.writeBamboo = async (req, res) => {
       // DB 저장 (게시물)
       const bambooData = await models.Bamboo.create(addData);
 
-      // IMAGE URL 발급
-      await file.bambooCreatImageUrlDB(picture, requestAddress, bambooData.idx);
+      // IMAGE URL 발급 && 파일 DB 저장
+      await file.bambooCreatImageUrlDB(picture, bambooData.idx);
 
       const result = {
         status: 200,
@@ -91,7 +89,6 @@ exports.writeBamboo = async (req, res) => {
 };
 
 exports.getAllowBamboo = async (req, res) => {
-  const requestAddress = req.get('host');
   const { query } = req;
   let { limit } = query;
   const { page } = query;
@@ -112,15 +109,13 @@ exports.getAllowBamboo = async (req, res) => {
     limit = Number(limit);
 
     const bamboo = await models.Bamboo.getIsAllowBamboo(1, requestPage, limit);
-    // const comment = await models.PostCommen.getAllComment();
 
     await asyncForeach(bamboo, async (value) => {
       const { idx } = value;
-      // value.comment = [];
 
       const fileData = await models.BambooFile.getFiles(idx);
 
-      await file.creatImageUrl(fileData, requestAddress);
+      await file.creatImageUrl(fileData);
 
       if (fileData.length > 0) {
         value.picture = fileData;

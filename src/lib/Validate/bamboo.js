@@ -6,7 +6,6 @@ exports.validateWriteBamboo = async (body) => {
     name: Joi.string().allow(null),
     profileImage: Joi.string().allow(null),
     contents: Joi.string().required(),
-    // category: Joi.string().required(),
     picture: Joi.any().allow(null),
   });
   // eslint-disable-next-line no-useless-catch
