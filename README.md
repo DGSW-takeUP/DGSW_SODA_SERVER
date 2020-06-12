@@ -37,7 +37,7 @@ GITHUB: ** [](https://github.com/MDEV-DGSW/DodamDodam_DID_Server)[https://github
 
 문의 조회 페이지
 
-**대나무 숲 어드민 조회 화면 (제보 글 승낙/거절 승낙시 페이스북 페이지 자동 업로드)**
+**대나무 숲 어드민 조회 페이지 (제보 글 승낙/거절 승낙시 페이스북 페이지 자동 업로드)**
 
 문의 상세 조회 페이지
 
