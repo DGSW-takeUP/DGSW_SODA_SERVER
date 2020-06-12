@@ -31,26 +31,13 @@ GITHUB: ** [](https://github.com/MDEV-DGSW/DodamDodam_DID_Server)[https://github
 
 ## 제공 서비스
 
-**메인 화면**
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/818b39c0-5c5a-42ab-adaa-f34f90b3a16a/1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/818b39c0-5c5a-42ab-adaa-f34f90b3a16a/1.png)
-
 대숲 작성 페이지
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c67dd8f0-b874-4710-bcb1-64832b97bc43/2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c67dd8f0-b874-4710-bcb1-64832b97bc43/2.png)
 
 대숲 승인/거절 어드민 페이지
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2ee00e0e-4920-4193-9bff-e2af50f7dbcb/3.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2ee00e0e-4920-4193-9bff-e2af50f7dbcb/3.png)
-
 문의 조회 페이지
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5f0835a-ba3d-46c2-8e64-3ed46bea7bae/4.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5f0835a-ba3d-46c2-8e64-3ed46bea7bae/4.png)
 
 **대나무 숲 어드민 조회 화면 (제보 글 승낙/거절 승낙시 페이스북 페이지 자동 업로드)**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/07ff21e1-4be8-4841-b6f7-9ef684adf4d7/5.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/07ff21e1-4be8-4841-b6f7-9ef684adf4d7/5.png)
-
 문의 상세 조회 페이지
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c6a163d2-c6f2-4b6d-8002-12a9f90357da/6.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c6a163d2-c6f2-4b6d-8002-12a9f90357da/6.png)
