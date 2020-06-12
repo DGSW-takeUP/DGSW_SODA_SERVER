@@ -1,7 +1,8 @@
 
 
 <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/v0/svg-twitter/1f5e8-fe0f.svg"  width="50" height="50"> 
-# DGSW-SODA
+
+## DGSW-SODA
 
 ## DGSW-SODA는 대구 소프트웨어고등학교 학생들을 대상으로 만든 커뮤니티 사이트입니다. 자신이 가지고있는 학업에 관한 정보, 게임, 취미, 개발 혹은 일상에 관해 글을 쓰고 소통할 수 있습니다.
 
