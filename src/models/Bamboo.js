@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(1000),
       allowNull: false,
     },
+    count: {
+      field: 'count',
+      type: DataTypes.INTEGER(100),
+      allowNull: true,
+    },
     /** 작성자 */
     // memberId: {
     //   field: 'member_id',

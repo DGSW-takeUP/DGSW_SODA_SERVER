@@ -76,6 +76,7 @@ exports.isAllowBamboo = async (req, res) => {
       await models.Bamboo.update({
         isAllow: 1,
         allowDate: Date.now(),
+        count: bambooCount.length,
       }, {
         where: {
           idx: bamboo.idx,
