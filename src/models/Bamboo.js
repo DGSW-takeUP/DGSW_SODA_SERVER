@@ -49,12 +49,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0,
     },
-    /** 카테고리 */
-    // category: {
-    // field: 'category',
-    // type: DataTypes.STRING(50),
-    // allowNull: false,
-    // },
     /** 업로드 날짜 */
     joinDate: {
       field: 'join_date',

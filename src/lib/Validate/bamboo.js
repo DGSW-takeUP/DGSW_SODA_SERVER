@@ -28,3 +28,29 @@ exports.validateBambooFile = async (body) => {
     throw error;
   }
 };
+
+exports.validateBambooComment = async (body) => {
+  const schema = Joi.object().keys({
+    contents: Joi.string().required(),
+    bambooIdx: Joi.number().required(),
+  });
+  // eslint-disable-next-line no-useless-catch
+  try {
+    return await Joi.validate(body, schema);
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.validateBambooCommentUpdate = async (body) => {
+  const schema = Joi.object().keys({
+    contents: Joi.string().required(),
+    commentIdx: Joi.number().required(),
+  });
+  // eslint-disable-next-line no-useless-catch
+  try {
+    return await Joi.validate(body, schema);
+  } catch (error) {
+    throw error;
+  }
+};
