@@ -68,6 +68,10 @@ module.exports = (sequelize, DataTypes) => {
       bambooIdx,
     },
 
+    order: [
+      ['writeDate', 'DESC'],
+    ],
+
     raw: true,
   });
 
