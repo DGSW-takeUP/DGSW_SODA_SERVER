@@ -1,6 +1,7 @@
 const models = require('../../../models');
 const validate = require('../../../lib/Validate/bamboo');
 const colorConsole = require('../../../lib/log');
+const { asyncForeach } = require('../../../lib/method');
 
 exports.writeComment = async (req, res) => {
   const { body } = req;
@@ -124,6 +125,17 @@ exports.getComments = async (req, res) => {
     limit = Number(limit);
 
     const comments = await models.BambooComment.getComments(bambooIdx, requestPage, limit);
+    const members = await models.Member.getAllMember();
+
+    await asyncForeach(comments, (comment) => {
+      const { memberId } = comment;
+
+      for (let i = 0; i < members.length; i += 1) {
+        if (members[i].memberId === memberId) {
+          comment.profileImage = members[i].profileImage;
+        }
+      }
+    });
 
     const result = {
       status: 200,

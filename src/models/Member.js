@@ -105,5 +105,9 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  Member.getAllMember = () => Member.findAll({
+    raw: true,
+  });
+
   return Member;
 };
