@@ -113,12 +113,20 @@ exports.getAllowBamboo = async (req, res) => {
 
       const fileData = await models.BambooFile.getFiles(idx);
 
+      const empathyData = await models.BambooEmpathy.getEmpathyByBambooIdx(idx);
+
       await file.creatImageUrl(fileData);
 
       if (fileData.length > 0) {
         value.picture = fileData;
       } else {
         value.picture = null;
+      }
+
+      if (empathyData.length > 0) {
+        value.empathy = empathyData;
+      } else {
+        value.empathy = null;
       }
     });
 

@@ -7,12 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    /** 제목 */
-    // title: {
-    //   field: 'title',
-    //   type: DataTypes.STRING(50),
-    //   allowNull: false,
-    // },
     /** 내용 */
     contents: {
       field: 'contents',
@@ -24,12 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(100),
       allowNull: true,
     },
-    /** 작성자 */
-    // memberId: {
-    //   field: 'member_id',
-    //   type: DataTypes.STRING(50),
-    //   allowNull: true,
-    // },
     name: {
       field: 'name',
       type: DataTypes.STRING(50),
