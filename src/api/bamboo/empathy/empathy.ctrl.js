@@ -41,3 +41,30 @@ exports.sympathize = async (req, res) => {
     res.status(500).json(result);
   }
 };
+
+// exports.getEmpathyMember = async (req, res) => {
+//   const { bambooIdx } = req.query;
+
+//   try {
+//     const emapthyData = await models.BambooEmpathy.getEmpathyByBambooIdx(bambooIdx);
+
+//     const result = {
+//       status: 200,
+//       message: '해당 게시글의 공감 리스트 조회 성공!!',
+//       data: {
+//         emapthyData,
+//       },
+//     };
+
+//     res.status(200).json(result);
+//   } catch (error) {
+//     colorConsole.error(error);
+
+//     const result = {
+//       status: 500,
+//       message: '서버 에러!',
+//     };
+
+//     res.status(500).json(result);
+//   }
+// };

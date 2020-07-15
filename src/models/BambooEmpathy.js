@@ -76,5 +76,14 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  BambooEmpathy.getEmpathyByType = (bambooIdx, empathyType) => BambooEmpathy.findAll({
+    where: {
+      bambooIdx,
+      empathyType,
+    },
+
+    raw: true,
+  });
+
   return BambooEmpathy;
 };

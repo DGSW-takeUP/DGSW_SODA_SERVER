@@ -113,7 +113,13 @@ exports.getAllowBamboo = async (req, res) => {
 
       const fileData = await models.BambooFile.getFiles(idx);
 
-      const empathyData = await models.BambooEmpathy.getEmpathyByBambooIdx(idx);
+      const empathyData = await models.BambooEmpathy.getEmpathyByBambooIdx(idx, 'sad');
+      const empathySad = await models.BambooEmpathy.getEmpathyByType(idx, 'sad');
+      const empathyAngry = await models.BambooEmpathy.getEmpathyByType(idx, 'angry');
+      const empathyLike = await models.BambooEmpathy.getEmpathyByType(idx, 'like');
+      const empathyCool = await models.BambooEmpathy.getEmpathyByType(idx, 'cool');
+      const empathyLove = await models.BambooEmpathy.getEmpathyByType(idx, 'love');
+      const empathyFunny = await models.BambooEmpathy.getEmpathyByType(idx, 'funny');
 
       await file.creatImageUrl(fileData);
 
@@ -124,7 +130,17 @@ exports.getAllowBamboo = async (req, res) => {
       }
 
       if (empathyData.length > 0) {
-        value.empathy = empathyData;
+        value.empathy = {
+          empathyCount: {
+            empathySad: empathySad.length,
+            empathyAngry: empathyAngry.length,
+            empathyLike: empathyLike.length,
+            empathyCool: empathyCool.length,
+            empathyLove: empathyLove.length,
+            empathyFunny: empathyFunny.length,
+          },
+          empathyData,
+        };
       } else {
         value.empathy = null;
       }
