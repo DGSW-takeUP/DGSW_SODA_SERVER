@@ -85,5 +85,18 @@ module.exports = (sequelize, DataTypes) => {
     raw: true,
   });
 
+  BambooEmpathy.updateBambooEmpathy = (idx, memberId, empathyType, bambooIdx) => BambooEmpathy.update({
+    memberId,
+    empathyType,
+    bambooIdx,
+  },
+  {
+    where: {
+      idx,
+    },
+
+    raw: true,
+  });
+
   return BambooEmpathy;
 };

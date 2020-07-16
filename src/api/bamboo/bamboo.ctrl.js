@@ -113,7 +113,7 @@ exports.getAllowBamboo = async (req, res) => {
 
       const fileData = await models.BambooFile.getFiles(idx);
 
-      const empathyData = await models.BambooEmpathy.getEmpathyByBambooIdx(idx, 'sad');
+      const empathyData = await models.BambooEmpathy.getEmpathyByBambooIdx(idx);
       const empathySad = await models.BambooEmpathy.getEmpathyByType(idx, 'sad');
       const empathyAngry = await models.BambooEmpathy.getEmpathyByType(idx, 'angry');
       const empathyLike = await models.BambooEmpathy.getEmpathyByType(idx, 'like');

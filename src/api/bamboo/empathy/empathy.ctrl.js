@@ -17,9 +17,12 @@ exports.sympathize = async (req, res) => {
   }
 
   try {
-    const member = await models.BambooEmpathy.findEmpathyUser(memberId, bambooIdx);
-    if (member) {
+    const empathyData = await models.BambooEmpathy.findEmpathyUser(memberId, bambooIdx);
+
+    if (empathyData && empathyType === empathyData.empathyType) {
       await models.BambooEmpathy.cancleEmpathy(bambooIdx, memberId);
+    } else if (empathyData && empathyType !== empathyData.empathyType) {
+      await models.BambooEmpathy.updateBambooEmpathy(empathyData.idx, memberId, empathyType, bambooIdx);
     } else {
       await models.BambooEmpathy.sympathizeBamboo(bambooIdx, memberId, empathyType);
     }
