@@ -7,14 +7,12 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    /** 파일 TYPE */
     email: {
       field: 'email',
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
     },
-    /** 파일 업로드 이름 */
     code: {
       field: 'code',
       type: DataTypes.STRING(500),
